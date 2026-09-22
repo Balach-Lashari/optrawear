@@ -1,0 +1,113 @@
+@import "tailwindcss";
+@import "../docs/design/tokens/tokens.css";
+
+@layer base {
+  html {
+    background-color: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--color-cream);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    min-height: 100dvh;
+  }
+
+  /* Numbers line up in prices, prescriptions and measurements. */
+  body {
+    font-variant-numeric: tabular-nums;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: var(--color-ink);
+    color: var(--color-cream);
+  }
+
+  :focus-visible {
+    outline: 1.5px solid currentColor;
+    outline-offset: 3px;
+    border-radius: var(--radius-xs);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@utility page-x {
+  width: 100%;
+  max-width: calc(var(--container-page) + 6rem);
+  margin-inline: auto;
+  padding-inline: 1rem;
+
+  @media (width >= 48rem) {
+    padding-inline: 2rem;
+  }
+
+  @media (width >= 80rem) {
+    padding-inline: 3rem;
+  }
+}
+
+/* Fit diagram slider: hairline track, cream bead thumb. */
+@layer components {
+  .fit-range {
+    appearance: none;
+    height: 1.25rem;
+    background: transparent;
+    cursor: pointer;
+  }
+  .fit-range::-webkit-slider-runnable-track {
+    height: 1px;
+    background: color-mix(in srgb, var(--color-cream) 38%, transparent);
+  }
+  .fit-range::-moz-range-track {
+    height: 1px;
+    background: color-mix(in srgb, var(--color-cream) 38%, transparent);
+  }
+  .fit-range::-webkit-slider-thumb {
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    margin-top: -7px;
+    border-radius: 9999px;
+    background: var(--color-cream);
+    border: 0;
+  }
+  .fit-range::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 9999px;
+    background: var(--color-cream);
+    border: 0;
+  }
+  .fit-range:focus-visible {
+    outline-offset: 4px;
+  }
+}
