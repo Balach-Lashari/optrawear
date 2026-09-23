@@ -26,8 +26,9 @@ export function StoreMap() {
       <rect width={W} height={H} fill="#fffce8" />
       <path d={graticule ?? ""} fill="none" stroke="#efe9d4" strokeWidth="1" />
       <g fill="#f5f0dc" stroke="#d8d2bf" strokeWidth="0.8" strokeLinejoin="round">
+        {/* Natural Earth ids repeat (Australia's "036") or are missing, so key by position; the list is static. */}
         {all.features.map((f, i) => (
-          <path key={String(f.id ?? i)} d={path(f) ?? ""} />
+          <path key={i} d={path(f) ?? ""} />
         ))}
       </g>
       <path d={path(pakistan) ?? ""} fill="#f3eedb" stroke="var(--color-ink)" strokeOpacity="0.82" strokeWidth="1.3" strokeLinejoin="round" />
